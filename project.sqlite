@@ -1,0 +1,79 @@
+SELECT title, score
+FROM hacker_news
+ORDER BY score DESC
+LIMIT 5;
+
+SELECT SUM (score), title
+FROM hacker_news
+ORDER BY 1;
+
+SELECT user, SUM (score)
+FROM hacker_news
+GROUP BY user
+HAVING SUM (score) > 200;
+
+SELECT (309.0 + 304.0 + 282.0 + 517.0) / 6366.0;
+
+SELECT user, COUNT (*)
+FROM hacker_news
+WHERE url = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+GROUP BY user
+ORDER BY 2 DESC;
+
+SELECT CASE
+WHEN url LIKE '%github.com%' THEN 'GitHub'
+WHEN url LIKE '%https://medium.com%' THEN 'Medium'
+WHEN url LIKE '%https://www.nytimes.com%' THEN ' New York Times'
+ELSE 'Others'
+END AS 'Source',
+COUNT (*)
+FROM hacker_news
+GROUP BY 1;
+
+SELECT timestamp
+FROM hacker_news
+LIMIT 10;
+
+SELECT timestamp,
+   strftime('%H', timestamp)
+FROM hacker_news
+GROUP BY 1
+LIMIT 20;
+
+SELECT strftime ('%H', timestamp), 
+AVG (score),
+COUNT (*)
+FROM hacker_news
+GROUP BY 1
+ORDER BY 1;
+
+
+SELECT strftime ('%H', timestamp) AS 'Time', 
+ROUND (AVG (score)) AS 'AvgTime',
+COUNT (*) AS 'Number'
+FROM hacker_news
+WHERE timestamp IS NOT NULL
+GROUP BY 1
+ORDER BY 1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
